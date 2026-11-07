@@ -1,8 +1,12 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins{
     id 'java-library'
     id 'maven-publish'
     id 'idea'
     id 'net.neoforged.moddev' version '2.0.148'
+    id "com.modrinth.minotaur" version "2.+"
+    id 'net.darkhax.curseforgegradle' version '1.1.15'
 }
 
 version = mod_version
@@ -95,6 +99,31 @@ publishing{
             url "file://${project.projectDir}/repo"
         }
     }
+}
+
+task curseforge(type: TaskPublishCurseForge) {
+    apiToken = System.getenv("cursetoken")
+    def projectId = "1790060"
+    def mainFile = upload(projectId, jar)
+    mainFile.displayName = "SafeGeodes-${mod_version}"
+    mainFile.releaseType = "release"
+    mainFile.gameVersions = ["Server"]
+
+    mainFile.addGameVersion("${minecraft_version}")
+    mainFile.changelog = "Update"
+    mainFile.addModLoader("NeoForge")
+    mainFile.addJavaVersion("Java 21")
+}
+
+modrinth {
+    token = System.getenv("modrinthtoken")
+    projectId = "safegeodes"
+    gameVersions = List.of("${minecraft_version}")
+    versionNumber = "${mod_version}";
+    changelog = "Update"
+    versionType = "release"
+    versionName = "${mod_version}"
+    uploadFile = tasks.jar
 }
 
 idea{
