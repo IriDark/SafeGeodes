@@ -11,5 +11,7 @@ public class SafeGeodes{
     public static final String MODID = "safegeodes";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public SafeGeodes(IEventBus modEventBus, ModContainer modContainer){}
+    public SafeGeodes(IEventBus modEventBus, ModContainer modContainer){
+
+    }
 }
