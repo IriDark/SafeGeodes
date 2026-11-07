@@ -10,6 +10,7 @@ authors = "${mod_authors}"
 description = '''${mod_description}'''
 issueTrackerURL = "https://github.com/IriDark/SafeGeodes/issues/"
 logoFile = "logo.png"
+displayTest = "IGNORE_ALL_VERSION"
 
 [[mixins]]
 config = "${mod_id}.mixins.json"
